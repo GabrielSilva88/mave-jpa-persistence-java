@@ -17,7 +17,7 @@ public class Usuario {
 
 	@Column(length = 150)
 	private String nome;
-	@Column(nullable = false)
+	//@Column(nullable = false)
 	private Integer idade;
 
 	public Long getCodigo() {

@@ -3,6 +3,7 @@ package br.com.fuctura;
 import java.util.List;
 
 import br.com.fuctura.entity.Usuario;
+import br.com.fuctura.repository.UsuarioRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -15,14 +16,14 @@ public class Aplication {
 		
 		EntityManager em = entityManagerFactory.createEntityManager();
 		
+		UsuarioRepository ur = new UsuarioRepository(em);
+		
 		Usuario user = new Usuario();
 		//user.setCodigo(1L);
 		user.setNome("Gonçalves");
 		user.setIdade(98);
 		
-		em.getTransaction().begin();
-		em.persist(user);
-		em.getTransaction().commit();
+		ur.persist(user);
 				
 		// novo usuario
 		Usuario user2 = new Usuario();
@@ -30,9 +31,8 @@ public class Aplication {
 		user2.setNome("Breno");
 		user2.setIdade(98);
 		
-		em.getTransaction().begin();
-		em.persist(user2);
-		em.getTransaction().commit();
+		ur.equals(user2);
+		
 		Usuario userResult2 = em.find(Usuario.class, 1L);
 		//entityManagerFactory.close();
 		
@@ -41,11 +41,9 @@ public class Aplication {
 		Usuario user3 = new Usuario();
 		//user.setCodigo(1L);
 		user.setNome("Jerundio");
-		user.setIdade(8);
+		user.setIdade(78);
 		
-		em.getTransaction().begin();
-		em.persist(user3);
-		em.getTransaction().commit();
+		ur.persist(user3);
 		Usuario userResult3 = em.find(Usuario.class, 1L);
 		
 		// usuario 4
@@ -55,9 +53,7 @@ public class Aplication {
 		user.setNome("Silvanydsh");
 		user.setIdade(45);
 		
-		em.getTransaction().begin();
-		em.persist(user4);
-		em.getTransaction().commit();
+		ur.persist(user4);
 		Usuario userResult4 = em.find(Usuario.class, 1L);
 		
 		// usuario 5
@@ -65,11 +61,9 @@ public class Aplication {
 		Usuario user5 = new Usuario();
 		//user.setCodigo(1L);
 		user.setNome("Silvanydsh");
-		user.setIdade(45);
+		user.setIdade(56);
 		
-		em.getTransaction().begin();
-		em.persist(user5);
-		em.getTransaction().commit();
+		ur.persist(user5);
 		Usuario userResult5 = em.find(Usuario.class, 1L);
 		
 		// usuario 6
@@ -77,26 +71,19 @@ public class Aplication {
 		Usuario user6 = new Usuario();
 		//user.setCodigo(1L);
 		user.setNome("Silvanydsh");
-		user.setIdade(45);
+		user.setIdade(94);
 		
-		em.getTransaction().begin();
-		em.persist(user6);
-		em.getTransaction().commit();
+		ur.persist(user6);
 
 		Usuario userResult = em.find(Usuario.class, 1L);
 		
 		System.out.print("Nome: " + userResult.toString());
-
-		// criar comando JPQL
-		String comandoJqpl = "SELECT u FROM Usuario u WHERE u.idade > 50;";
 		
-		// criar Query "constual"
-		TypedQuery<Usuario> findAll = em.createQuery(comandoJqpl, Usuario.class);
+		// cria a variavel para diversas consulta sem repetir o codigo.
 		
-		// Invocar o comando
-		List<Usuario> resultConsulta = findAll.getResultList();
-		
-		for (Usuario usuario : resultConsulta) {
+		//List<Usuario> resultadoConsulta = ur.findUsuarioByIdade(50);
+		List<Usuario> resultadoConsulta = ur.findAll(3,1);
+		for (Usuario usuario : resultadoConsulta) {
 			System.out.println("Resultado findAll: " + usuario);
 		}
 
