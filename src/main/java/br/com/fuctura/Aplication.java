@@ -83,10 +83,15 @@ public class Aplication {
 		
 		//List<Usuario> resultadoConsulta = ur.findUsuarioByIdade(50);
 		List<Usuario> resultadoConsulta = ur.findAll(3,1);
+		
 		for (Usuario usuario : resultadoConsulta) {
 			System.out.println("Resultado findAll: " + usuario);
 		}
 
+		Long resultadoConsultaI = ur.somatorioIdade();
+		
+			System.out.println("Resultado :" + resultadoConsultaI);
+		
 	}
 }
  

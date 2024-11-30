@@ -59,6 +59,19 @@ public class UsuarioRepository {
 				return resultConsulta;
 	}
 	
+	public Long somatorioIdade() {
+		// criar comando SQL
+		String comandoJqpl = "SELECT SUM (u.idade) from Usuario u";
+		
+		// criar uma consulta para o somatorio
+		TypedQuery<Long> findAll = em.createQuery(comandoJqpl, Long.class);
+		
+		// invocar o comando
+		Long resultadoConsulta = findAll.getSingleResult();
+		
+		return resultadoConsulta;
+	}
+	
 	// metodo para o processo de salvar usuario. 
 	public void persist(Usuario u) {
 		em.getTransaction().begin();
