@@ -1,9 +1,12 @@
 package br.com.fuctura;
 
+import java.util.List;
+
 import br.com.fuctura.entity.Usuario;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.TypedQuery;
 
 public class Aplication {
 	public static void main(String[] args) {
@@ -20,10 +23,7 @@ public class Aplication {
 		em.getTransaction().begin();
 		em.persist(user);
 		em.getTransaction().commit();
-		Usuario userResult = em.find(Usuario.class, 1L);
-		
-		System.out.print("Nome: " + userResult.toString());
-		
+				
 		// novo usuario
 		Usuario user2 = new Usuario();
 		//user.setCodigo(1L);
@@ -60,11 +60,44 @@ public class Aplication {
 		em.getTransaction().commit();
 		Usuario userResult4 = em.find(Usuario.class, 1L);
 		
-		// 
-		try{
-			
-		} catch (Exception e) {
-			// TODO: handle exception
+		// usuario 5
+		
+		Usuario user5 = new Usuario();
+		//user.setCodigo(1L);
+		user.setNome("Silvanydsh");
+		user.setIdade(45);
+		
+		em.getTransaction().begin();
+		em.persist(user5);
+		em.getTransaction().commit();
+		Usuario userResult5 = em.find(Usuario.class, 1L);
+		
+		// usuario 6
+		
+		Usuario user6 = new Usuario();
+		//user.setCodigo(1L);
+		user.setNome("Silvanydsh");
+		user.setIdade(45);
+		
+		em.getTransaction().begin();
+		em.persist(user6);
+		em.getTransaction().commit();
+
+		Usuario userResult = em.find(Usuario.class, 1L);
+		
+		System.out.print("Nome: " + userResult.toString());
+
+		// criar comando JPQL
+		String comandoJqpl = "SELECT u FROM Usuario u WHERE u.idade > 50;";
+		
+		// criar Query "constual"
+		TypedQuery<Usuario> findAll = em.createQuery(comandoJqpl, Usuario.class);
+		
+		// Invocar o comando
+		List<Usuario> resultConsulta = findAll.getResultList();
+		
+		for (Usuario usuario : resultConsulta) {
+			System.out.println("Resultado findAll: " + usuario);
 		}
 
 	}
