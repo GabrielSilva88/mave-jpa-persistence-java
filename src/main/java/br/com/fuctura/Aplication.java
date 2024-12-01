@@ -44,7 +44,6 @@ public class Aplication {
 		user.setIdade(78);
 		
 		ur.persist(user3);
-		Usuario userResult3 = em.find(Usuario.class, 1L);
 		
 		// usuario 4
 		
@@ -54,7 +53,6 @@ public class Aplication {
 		user.setIdade(45);
 		
 		ur.persist(user4);
-		Usuario userResult4 = em.find(Usuario.class, 1L);
 		
 		// usuario 5
 		
@@ -64,7 +62,6 @@ public class Aplication {
 		user.setIdade(56);
 		
 		ur.persist(user5);
-		Usuario userResult5 = em.find(Usuario.class, 1L);
 		
 		// usuario 6
 		

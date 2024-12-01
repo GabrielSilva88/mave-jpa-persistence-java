@@ -1,9 +1,13 @@
 package br.com.fuctura;
 
+import java.util.List;
+
 import br.com.fuctura.entity.Veiculo;
+import br.com.fuctura.repository.VeiculoRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.TypedQuery;
 
 public class AplicationVeiculo {
 
@@ -13,6 +17,8 @@ public class AplicationVeiculo {
 		
 		EntityManager emV = emfVeiculo.createEntityManager();
 		
+		VeiculoRepository vr = new VeiculoRepository(emV);
+		
 		Veiculo v = new Veiculo();
 		
 		v.setMarca("bmw");
@@ -21,13 +27,38 @@ public class AplicationVeiculo {
 		v.setAno(1990);
 		v.setPreco(45.000);
 		
-		emV.getTransaction().begin();
-		emV.persist(v);
-		emV.getTransaction().commit();
+		vr.persistence(v);
+
+		Veiculo v2 = new Veiculo();
+		
+		v2.setMarca("toyota");
+		v2.setModelo("etios");
+		v2.setPlaca("gmg-1507");
+		v2.setAno(1988);
+		v2.setPreco(120.000);
+		
+		vr.persistence(v2);
+		
+		Veiculo v3 = new Veiculo();
+		
+		v3.setMarca("toyota");
+		v3.setModelo("etios");
+		v3.setPlaca("gmg-1507");
+		v3.setAno(1988);
+		v3.setPreco(120.000);
+		
+		vr.persistence(v3);
 		
 		Veiculo VeiculoResult = emV.find(Veiculo.class, 1L);
 		
-		System.out.println("Veiculo: " + VeiculoResult.toString());
+		List<Veiculo> ResultadoConsultaVeiculo = vr.findAll();
+		
+		for (Veiculo veiculo : ResultadoConsultaVeiculo) {
+
+			System.out.println("Veiculo: " + VeiculoResult.toString());
+		}
+		
+		
 		
 	}
 }
