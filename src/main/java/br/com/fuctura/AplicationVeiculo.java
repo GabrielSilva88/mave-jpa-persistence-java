@@ -41,11 +41,11 @@ public class AplicationVeiculo {
 		
 		Veiculo v3 = new Veiculo();
 		
-		v3.setMarca("toyota");
-		v3.setModelo("etios");
-		v3.setPlaca("gmg-1507");
-		v3.setAno(1988);
-		v3.setPreco(120.000);
+		v3.setMarca("honda");
+		v3.setModelo("fit");
+		v3.setPlaca("sla-8097");
+		v3.setAno(2014);
+		v3.setPreco(94.000);
 		
 		vr.persistence(v3);
 		
