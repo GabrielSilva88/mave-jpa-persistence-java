@@ -1,0 +1,16 @@
+Importar o Projeto
+
+1 - Extrair o arquivo na pasta de sua preferência (lembrar onde extraiu!)
+2 - Abrir o Eclipse
+3 - Escolher o menu: File -> Open Project From File System... -> Directory...
+3.1 - Informe a pasta onde você extraiu (passo 1)
+3.2 - Clique em finish
+4 - Seu projeto foi importado com sucesso.
+
+Configurações
+
+1 - Altere o arquivo persistence.xml, coloque sua senha de banco de dados na unidade de persistencia FUCTURA-PU
+
+Executar
+
+1 - Abrir a classe aplicação e executar o main.
